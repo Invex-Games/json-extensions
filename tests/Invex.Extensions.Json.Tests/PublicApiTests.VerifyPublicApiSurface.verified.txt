@@ -1,0 +1,36 @@
+﻿[
+  {
+    Name: Invex.Extensions.Json.JsonExtensions,
+    Members: [
+      {
+        Name: Flatten
+      },
+      {
+        Name: ReplaceValue
+      },
+      {
+        Name: ReplaceValues
+      },
+      {
+        Name: Unflatten
+      }
+    ]
+  },
+  {
+    Name: Invex.Extensions.Json.JsonUtil,
+    Members: [
+      {
+        Name: HasNestedObjects
+      },
+      {
+        Name: ToFlattenedDictionary
+      },
+      {
+        Name: ToFlattenedJsonObject
+      },
+      {
+        Name: ToUnflattenedJsonObject
+      }
+    ]
+  }
+]

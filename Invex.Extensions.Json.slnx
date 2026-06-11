@@ -1,0 +1,9 @@
+﻿<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/Invex.Extensions.Json/Invex.Extensions.Json.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/Invex.Extensions.Json.Tests/Invex.Extensions.Json.Tests.csproj" />
+  </Folder>
+  <Project Path="_atom/_atom.csproj" />
+</Solution>
