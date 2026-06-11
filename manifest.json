@@ -1,0 +1,200 @@
+{
+  "source_base_path": "/home/runner/work/json-extensions/json-extensions",
+  "xrefmap": "xrefmap.yml",
+  "files": [
+    {
+      "type": "Resource",
+      "output": {
+        "resource": {
+          "relative_path": "index.json"
+        }
+      }
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "LICENSE.txt",
+      "output": {
+        "resource": {
+          "relative_path": "LICENSE.txt"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "README.md",
+      "output": {
+        ".html": {
+          "relative_path": "README.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Invex.Extensions.Json.JsonExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Invex.Extensions.Json.JsonExtensions.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Invex.Extensions.Json.JsonExtensions",
+      "Summary": "<p sourcefile=\"api/Invex.Extensions.Json.JsonExtensions.yml\" sourcestartlinenumber=\"1\">Extension methods for working with System.Text.Json nodes using a human-readable path notation.</p>\n<p>Path conventions:</p>\n<ul><li>\n            Object properties are separated by a configurable separator, colon by default\n            (e.g., <code>\"user:address:city\"</code>).\n        </li><li>\n            Arrays are addressed with bracketed indices (e.g., <code>\"users:[0]:name\"</code>) in\n            flattened/unflattened keys.\n        </li><li>\n            For in-place replacement via\n            <xref href=\"Invex.Extensions.Json.JsonExtensions.ReplaceValues(System.Text.Json.Nodes.JsonObject%2cSystem.Collections.Generic.Dictionary%7bSystem.String%2cSystem.String%7d%2cSystem.String)\" data-throw-if-not-resolved=\"false\"></xref>, array steps use\n            bare numeric segments instead (e.g., <code>\"users:0:name\"</code>).\n        </li></ul>\n<p>\n    These helpers are allocation-conscious and designed for clarity when manipulating JSON in config and ETL\n    scenarios.\n</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Invex.Extensions.Json.JsonUtil.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Invex.Extensions.Json.JsonUtil.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Invex.Extensions.Json.JsonUtil",
+      "Summary": "<p sourcefile=\"api/Invex.Extensions.Json.JsonUtil.yml\" sourcestartlinenumber=\"1\">Provides extension members on <xref href=\"System.Text.Json.Nodes.JsonObject\" data-throw-if-not-resolved=\"false\"></xref> for flattening a hierarchical JSON structure into a\nsingle level and reconstructing (unflattening) it again.</p>\n<p>Path conventions used by this class:</p>\n<ul><li>\n            Object property segments are joined with a configurable separator (default <code>\":\"</code>),\n            e.g., <code>\"user:address:city\"</code>.\n        </li><li>\n            Array elements are addressed with bare zero-based numeric segments, e.g., <code>\"users:0:name\"</code>.\n        </li></ul>\n<p>\n    Note: this differs from <xref href=\"Invex.Extensions.Json.JsonExtensions.Flatten(System.Text.Json.Nodes.JsonNode%2cSystem.String)\" data-throw-if-not-resolved=\"false\"></xref>, which uses bracketed\n    indices such as <code>\"users:[0]:name\"</code>.\n</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Invex.Extensions.Json.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Invex.Extensions.Json.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Invex.Extensions.Json",
+      "Summary": null
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "api/index.md",
+      "output": {
+        ".html": {
+          "relative_path": "api/index.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "api/toc.yml",
+      "output": {
+        ".json": {
+          "relative_path": "api/toc.json"
+        },
+        ".html": {
+          "relative_path": "api/toc.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "docs/flattening.md",
+      "output": {
+        ".html": {
+          "relative_path": "docs/flattening.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "docs/getting-started.md",
+      "output": {
+        ".html": {
+          "relative_path": "docs/getting-started.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "docs/jsonobject-extensions.md",
+      "output": {
+        ".html": {
+          "relative_path": "docs/jsonobject-extensions.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "docs/path-notation.md",
+      "output": {
+        ".html": {
+          "relative_path": "docs/path-notation.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "docs/replacing-values.md",
+      "output": {
+        ".html": {
+          "relative_path": "docs/replacing-values.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "docs/toc.yml",
+      "output": {
+        ".json": {
+          "relative_path": "docs/toc.json"
+        },
+        ".html": {
+          "relative_path": "docs/toc.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/icon.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/icon.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "index.md",
+      "output": {
+        ".html": {
+          "relative_path": "index.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "toc.yml",
+      "output": {
+        ".json": {
+          "relative_path": "toc.json"
+        },
+        ".html": {
+          "relative_path": "toc.html"
+        }
+      },
+      "version": ""
+    }
+  ],
+  "groups": [
+    {
+      "xrefmap": "xrefmap.yml"
+    }
+  ]
+}

@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Class JsonExtensions | Invex.Extensions.Json </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class JsonExtensions | Invex.Extensions.Json ">
+      
+      <meta name="description" content="Extension methods for working with System.Text.Json nodes using a human-readable path notation. Path conventions:              Object properties are separated by a configurable separator, colon by default             (e.g., &quot;user:address:city&quot;).                      Arrays are addressed with bracketed indices (e.g., &quot;users:[0]:name&quot;) in             flattened/unflattened keys.                      For in-place replacement via             , array steps use             bare numeric segments instead (e.g., &quot;users:0:name&quot;).               These helpers are allocation-conscious and designed for clarity when manipulating JSON in config and ETL     scenarios.">
+      <link rel="icon" href="../favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/Invex-Games/json-extensions/new/main/apiSpec/new?filename=Invex_Extensions_Json_JsonExtensions.md&amp;value=---%0Auid%3A%20Invex.Extensions.Json.JsonExtensions%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../logo.svg" alt="Invex.Extensions.Json">
+            Invex.Extensions.Json
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="Invex.Extensions.Json.JsonExtensions">
+
+
+
+  <h1 id="Invex_Extensions_Json_JsonExtensions" data-uid="Invex.Extensions.Json.JsonExtensions" class="text-break">
+Class JsonExtensions  <a class="header-action link-secondary" title="View source" href="https://github.com/Invex-Games/json-extensions/blob/v0.1.0/src/Invex.Extensions.Json/JsonExtensions.Unflatten.cs/#L3"><i class="bi bi-code-slash"></i></a>
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><a class="xref" href="Invex.html">Invex</a>.<a class="xref" href="Invex.Extensions.html">Extensions</a>.<a class="xref" href="Invex.Extensions.Json.html">Json</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>Invex.Extensions.Json.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"><p>Extension methods for working with System.Text.Json nodes using a human-readable path notation.</p>
+<p>Path conventions:</p>
+<ul><li>
+            Object properties are separated by a configurable separator, colon by default
+            (e.g., <code>"user:address:city"</code>).
+        </li><li>
+            Arrays are addressed with bracketed indices (e.g., <code>"users:[0]:name"</code>) in
+            flattened/unflattened keys.
+        </li><li>
+            For in-place replacement via
+            <a class="xref" href="Invex.Extensions.Json.JsonExtensions.html#Invex_Extensions_Json_JsonExtensions_ReplaceValues_System_Text_Json_Nodes_JsonObject_System_Collections_Generic_Dictionary_System_String_System_String__System_String_">ReplaceValues(JsonObject, Dictionary&lt;string, string?&gt;, string)</a>, array steps use
+            bare numeric segments instead (e.g., <code>"users:0:name"</code>).
+        </li></ul>
+<p>
+    These helpers are allocation-conscious and designed for clarity when manipulating JSON in config and ETL
+    scenarios.
+</p>
+</div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[PublicAPI]
+public static class JsonExtensions</code></pre>
+  </div>
+
+
+
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><span class="xref">JsonExtensions</span></div>
+    </dd>
+  </dl>
+
+
+
+  <dl class="typelist inheritedMembers">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone">object.MemberwiseClone()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">object.ToString()</a>
+    </div>
+  </dd></dl>
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="Invex_Extensions_Json_JsonExtensions_Flatten_" data-uid="Invex.Extensions.Json.JsonExtensions.Flatten*"></a>
+
+  <h3 id="Invex_Extensions_Json_JsonExtensions_Flatten_System_Text_Json_Nodes_JsonNode_System_String_" data-uid="Invex.Extensions.Json.JsonExtensions.Flatten(System.Text.Json.Nodes.JsonNode,System.String)">
+  Flatten(JsonNode, string)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Invex-Games/json-extensions/blob/v0.1.0/src/Invex.Extensions.Json/JsonExtensions.Flatten.cs/#L82"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Flattens a hierarchical JSON structure into a flat dictionary of path/value pairs.
+Nested objects are represented using separator-joined paths, and array elements
+use bracket notation with zero-based indices.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static IDictionary&lt;string, string?&gt; Flatten(JsonNode node, string separator = &quot;:&quot;)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>node</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.text.json.nodes.jsonnode">JsonNode</a></dt>
+    <dd><p>The JSON node to flatten. Can be a <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.text.json.nodes.jsonobject">JsonObject</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.text.json.nodes.jsonarray">JsonArray</a>, or primitive value.</p>
+</dd>
+    <dt><code>separator</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>The string used to join path segments. May be more than one character. Defaults to <code>&quot;:&quot;</code>.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.idictionary-2">IDictionary</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>&gt;</dt>
+    <dd><p>A dictionary mapping each leaf path to its string representation:</p>
+<ul><li>
+            Keys use <code class="paramref">separator</code> between object property segments and
+            <code>[index]</code> notation for array elements (e.g., <code>"user:tags:[0]"</code>).
+        </li><li>
+            Values are the string representation of the JSON values (<code>null</code> for JSON null values),
+            so the original JSON value kinds are not preserved.
+        </li></ul>
+<p>The source node is not modified.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+  <h4 class="section" id="Invex_Extensions_Json_JsonExtensions_Flatten_System_Text_Json_Nodes_JsonNode_System_String__examples">Examples</h4>
+  <pre><code class="lang-csharp">var json = JsonNode.Parse("""{ "user": { "name": "John", "tags": ["admin", "user"] } }""");
+var flattened = JsonExtensions.Flatten(json);
+// { ["user:name"] = "John", ["user:tags:[0]"] = "admin", ["user:tags:[1]"] = "user" }</code></pre>
+
+
+  <h4 class="section" id="Invex_Extensions_Json_JsonExtensions_Flatten_System_Text_Json_Nodes_JsonNode_System_String__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>
+    Empty nested objects and arrays produce no entries in the output. If <code class="paramref">node</code> is
+    itself a primitive value, the result contains a single entry with an empty-string key.
+</p>
+<p>
+    The output can be passed to <a class="xref" href="Invex.Extensions.Json.JsonExtensions.html#Invex_Extensions_Json_JsonExtensions_Unflatten_System_Collections_Generic_IDictionary_System_String_System_String__System_String_">Unflatten(IDictionary&lt;string, string?&gt;, string)</a> to rebuild
+    the structure (all values become JSON strings).
+</p>
+</div>
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></dt>
+    <dd><p>Thrown when <code class="paramref">node</code> is null.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="Invex_Extensions_Json_JsonExtensions_ReplaceValue_" data-uid="Invex.Extensions.Json.JsonExtensions.ReplaceValue*"></a>
+
+  <h3 id="Invex_Extensions_Json_JsonExtensions_ReplaceValue_System_Text_Json_Nodes_JsonObject_System_String_System_String_System_String_" data-uid="Invex.Extensions.Json.JsonExtensions.ReplaceValue(System.Text.Json.Nodes.JsonObject,System.String,System.String,System.String)">
+  ReplaceValue(JsonObject, string, string?, string)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Invex-Games/json-extensions/blob/v0.1.0/src/Invex.Extensions.Json/JsonExtensions.ReplaceValue.cs/#L61"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Replaces the value at a specified path within a JSON object, modifying the object in place.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static JsonObject ReplaceValue(this JsonObject root, string path, string? value, string separator = &quot;:&quot;)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>root</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.text.json.nodes.jsonobject">JsonObject</a></dt>
+    <dd><p>The JSON object to modify.</p>
+</dd>
+    <dt><code>path</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>The property path to replace. Use <code class="paramref">separator</code>-joined segments for nested objects
+(e.g., <code>&quot;user:address:city&quot;</code>). Array indices are not supported by this method.
+If the path contains no <code class="paramref">separator</code>, it is treated as a simple, root-level property name.
+An empty path is ignored and the object is returned unchanged.</p>
+</dd>
+    <dt><code>value</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>The new value to assign at the specified path. Use <code>null</code> for JSON null.</p>
+</dd>
+    <dt><code>separator</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>The string used to split path segments. Defaults to <code>&quot;:&quot;</code>.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.text.json.nodes.jsonobject">JsonObject</a></dt>
+    <dd><p>The same <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.text.json.nodes.jsonobject">JsonObject</a> instance passed in, after modification:</p>
+<ul><li>
+            For simple paths (no <code class="paramref">separator</code>), the property is only replaced if it
+            already exists; missing properties are not added.
+        </li><li>
+            For <code class="paramref">separator</code>-joined paths, only existing intermediate
+            <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.text.json.nodes.jsonobject">JsonObject</a> nodes are traversed; missing segments are not created. The final
+            segment is then set on the deepest object reached (potentially the root), adding the property
+            there if it does not exist.
+        </li></ul>
+</dd>
+  </dl>
+
+
+
+
+
+
+  <h4 class="section" id="Invex_Extensions_Json_JsonExtensions_ReplaceValue_System_Text_Json_Nodes_JsonObject_System_String_System_String_System_String__examples">Examples</h4>
+  <pre><code class="lang-csharp">var obj = JsonNode.Parse("""{ "user": { "name": "John" } }""").AsObject();
+obj.ReplaceValue("user:name", "Jane");
+// {"user":{"name":"Jane"}}
+obj.ReplaceValue("unknown", "x");
+// Unchanged: simple paths never add missing root-level properties.</code></pre>
+
+
+  <h4 class="section" id="Invex_Extensions_Json_JsonExtensions_ReplaceValue_System_Text_Json_Nodes_JsonObject_System_String_System_String_System_String__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>
+    This method is intentionally conservative about creating structure. If you need batch updates and
+    support for stepping into arrays, see
+    <a class="xref" href="Invex.Extensions.Json.JsonExtensions.html#Invex_Extensions_Json_JsonExtensions_ReplaceValues_System_Text_Json_Nodes_JsonObject_System_Collections_Generic_Dictionary_System_String_System_String__System_String_">ReplaceValues(JsonObject, Dictionary&lt;string, string?&gt;, string)</a>.
+</p>
+<p>
+    All replacement values are stored as JSON strings (or JSON null); existing value kinds such as
+    numbers or booleans are not preserved at the target path.
+</p>
+<p>
+    If <code class="paramref">root</code> is null, a <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.nullreferenceexception">NullReferenceException</a> is thrown when the
+    object is first dereferenced, per extension method invocation semantics.
+</p>
+</div>
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></dt>
+    <dd><p>Thrown when <code class="paramref">path</code> is null.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="Invex_Extensions_Json_JsonExtensions_ReplaceValues_" data-uid="Invex.Extensions.Json.JsonExtensions.ReplaceValues*"></a>
+
+  <h3 id="Invex_Extensions_Json_JsonExtensions_ReplaceValues_System_Text_Json_Nodes_JsonObject_System_Collections_Generic_Dictionary_System_String_System_String__System_String_" data-uid="Invex.Extensions.Json.JsonExtensions.ReplaceValues(System.Text.Json.Nodes.JsonObject,System.Collections.Generic.Dictionary{System.String,System.String},System.String)">
+  ReplaceValues(JsonObject, Dictionary&lt;string, string?&gt;, string)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Invex-Games/json-extensions/blob/v0.1.0/src/Invex.Extensions.Json/JsonExtensions.ReplaceValues.cs/#L85"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Applies multiple replacements to a JSON object in place using a consistent path notation.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static JsonObject ReplaceValues(this JsonObject root, Dictionary&lt;string, string?&gt; replacements, string separator = &quot;:&quot;)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>root</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.text.json.nodes.jsonobject">JsonObject</a></dt>
+    <dd><p>The root JSON object to modify.</p>
+</dd>
+    <dt><code>replacements</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary-2">Dictionary</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>&gt;</dt>
+    <dd><p>A mapping from path to new value. Paths can be:</p>
+<ul><li>
+            Simple property names (e.g., <code>"name"</code>); only updated if the property exists on the root.
+        </li><li>
+            <code class="paramref">separator</code>-joined nested paths (e.g., <code>"user:address:city"</code>).
+        </li><li>
+            Paths that step into arrays using bare numeric segments only (e.g., <code>"users:0:name"</code>).
+        </li></ul>
+<p>
+    Note: bracketed indices like <code>[0]</code> are not interpreted as array indices by this method; they
+    are treated as ordinary property names. Entries with empty keys are skipped.
+</p>
+</dd>
+    <dt><code>separator</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>The string used to split path segments. Defaults to <code>&quot;:&quot;</code>.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.text.json.nodes.jsonobject">JsonObject</a></dt>
+    <dd><p>The same <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.text.json.nodes.jsonobject">JsonObject</a> instance passed in, after modifications.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+  <h4 class="section" id="Invex_Extensions_Json_JsonExtensions_ReplaceValues_System_Text_Json_Nodes_JsonObject_System_Collections_Generic_Dictionary_System_String_System_String__System_String__examples">Examples</h4>
+  <pre><code class="lang-csharp">var obj = JsonNode.Parse("""{ "name": "John", "user": { "address": { "city":"NYC" } }, "users": [ { "name":"A" }, { "name":"B" } ] }""").AsObject();
+obj.ReplaceValues(new Dictionary&lt;string,string?&gt;
+{
+    ["name"] = "Jane",             // replaces root-level property if present
+    ["user:address:city"] = "LA",  // traverses nested objects if present
+    ["users:1:name"] = "Beta",     // updates within existing arrays (bare numeric index)
+});
+// {"name":"Jane","user":{"address":{"city":"LA"}},"users":[{"name":"A"},{"name":"Beta"}]}</code></pre>
+
+
+  <h4 class="section" id="Invex_Extensions_Json_JsonExtensions_ReplaceValues_System_Text_Json_Nodes_JsonObject_System_Collections_Generic_Dictionary_System_String_System_String__System_String__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>Behavior for each entry:</p>
+<ul><li>
+            Simple keys (no <code class="paramref">separator</code>): the root property is updated only if it
+            already exists.
+        </li><li>
+            Nested paths: the structure is traversed segment by segment. The final value is set only if
+            the full path exists (the last object property must already exist; array indices must be in
+            bounds).
+        </li><li>
+            Fallbacks when traversal cannot complete: if an intermediate object is missing a segment, the
+            remaining <code class="paramref">separator</code>-joined path is set as a literal property on the
+            deepest object reached (added if absent); otherwise, if the root itself contains a literal
+            property whose name equals the full key, that property is updated.
+        </li><li>No intermediate containers (objects or arrays) are ever created.</li><li>
+            Values are stored using <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.text.json.nodes.jsonvalue.create#system-text-json-nodes-jsonvalue-create(system-string-system-nullable((system-text-json-nodes-jsonnodeoptions)))">Create(string, JsonNodeOptions?)</a>, so all
+            replacement values become JSON strings (or JSON null); existing value kinds are not preserved
+            at the target path.
+        </li></ul>
+<p>This method modifies <code class="paramref">root</code> in place and returns it for chaining.</p>
+</div>
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></dt>
+    <dd><p>Thrown when <code class="paramref">replacements</code> is null.</p>
+</dd>
+  </dl>
+
+
+
+  <a id="Invex_Extensions_Json_JsonExtensions_Unflatten_" data-uid="Invex.Extensions.Json.JsonExtensions.Unflatten*"></a>
+
+  <h3 id="Invex_Extensions_Json_JsonExtensions_Unflatten_System_Collections_Generic_IDictionary_System_String_System_String__System_String_" data-uid="Invex.Extensions.Json.JsonExtensions.Unflatten(System.Collections.Generic.IDictionary{System.String,System.String},System.String)">
+  Unflatten(IDictionary&lt;string, string?&gt;, string)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/Invex-Games/json-extensions/blob/v0.1.0/src/Invex.Extensions.Json/JsonExtensions.Unflatten.cs/#L91"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Reconstructs a hierarchical JSON object from flattened key/value pairs, reversing
+<a class="xref" href="Invex.Extensions.Json.JsonExtensions.html#Invex_Extensions_Json_JsonExtensions_Flatten_System_Text_Json_Nodes_JsonNode_System_String_">Flatten(JsonNode, string)</a>.
+Keys are parsed as separator-joined paths in which bracketed segments (<code>[0]</code>, <code>[1]</code>, ...)
+denote array indices.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static JsonObject Unflatten(IDictionary&lt;string, string?&gt; flattened, string separator = &quot;:&quot;)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>flattened</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.idictionary-2">IDictionary</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>&gt;</dt>
+    <dd><p>A dictionary of flattened key/value pairs where:</p>
+<ul><li>
+            Key: a path using <code class="paramref">separator</code> between object property segments and
+            <code>[index]</code> notation for array elements (e.g., <code>"user:tags:[0]"</code>).
+        </li><li>
+            Value: the string representation of the value (<code>null</code> for JSON null values).
+        </li></ul>
+</dd>
+    <dt><code>separator</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>The string used to split keys into path segments. Must match the separator used when flattening.
+Defaults to <code>&quot;:&quot;</code>.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.text.json.nodes.jsonobject">JsonObject</a></dt>
+    <dd><p>A new <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.text.json.nodes.jsonobject">JsonObject</a> representing the reconstructed hierarchical structure.
+Nested objects and arrays are created as needed based on the path notation; all leaf values are stored
+as JSON strings (or JSON null).</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+  <h4 class="section" id="Invex_Extensions_Json_JsonExtensions_Unflatten_System_Collections_Generic_IDictionary_System_String_System_String__System_String__examples">Examples</h4>
+  <pre><code class="lang-csharp">var flattened = new Dictionary&lt;string, string?&gt;
+{
+    ["user:name"] = "John",
+    ["user:addresses:[0]:city"] = "New York",
+    ["user:addresses:[0]:zip"] = "10001",
+    ["user:tags:[0]"] = "admin",
+    ["user:tags:[1]"] = "user",
+};
+var json = JsonExtensions.Unflatten(flattened);
+// {"user":{"name":"John","addresses":[{"city":"New York","zip":"10001"}],"tags":["admin","user"]}}</code></pre>
+
+
+  <h4 class="section" id="Invex_Extensions_Json_JsonExtensions_Unflatten_System_Collections_Generic_IDictionary_System_String_System_String__System_String__remarks">Remarks</h4>
+  <div class="markdown level1 remarks"><p>The method handles common scenarios including:</p>
+<ul><li>Creating nested objects and arrays as needed.</li><li>Managing transitions between object and array contexts.</li><li>
+            Overwriting existing values when the same path is encountered multiple times.
+        </li></ul>
+<p>
+    Note: array indices are applied in append order; sparse or non-sequential indices are not padded
+    with nulls.
+</p>
+<p>Path parsing rules:</p>
+<ul><li><code class="paramref">separator</code> separates object property names.</li><li>
+            Square brackets with numbers (<code>[0]</code>, <code>[1]</code>, etc.) indicate array indices.
+        </li><li>
+            Mixed object/array paths are supported (e.g., <code>"users:[0]:name"</code>).
+        </li></ul>
+<p>
+    Because flattened values are strings, all reconstructed leaf values are JSON strings; the original
+    JSON value kinds (number, boolean) are not restored.
+</p>
+</div>
+
+  <h4 class="section">Exceptions</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></dt>
+    <dd><p>Thrown when <code class="paramref">flattened</code> is null.</p>
+</dd>
+  </dl>
+
+
+
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/Invex-Games/json-extensions/blob/v0.1.0/src/Invex.Extensions.Json/JsonExtensions.Unflatten.cs/#L3" class="edit-link">Edit this page</a>
+        </div>
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          Useful utilities for Microsoft.Extensions.Json
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
