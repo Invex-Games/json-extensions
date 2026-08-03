@@ -92,7 +92,7 @@ public static partial class JsonExtensions
         var flattened = new Dictionary<string, string?>();
         var sb = new StringBuilder(64);
 
-        Flatten(node, flattened, keyLookup, sb, separator);
+        node.Flatten(flattened, keyLookup, sb, separator);
 
         return flattened;
     }
@@ -152,7 +152,9 @@ public static partial class JsonExtensions
                     sb.Length = indexStart;
                     sb.Append(i);
                     sb.Append(']');
-                    Flatten(array[i], flattened, keyLookup, sb, separator);
+
+                    array[i]
+                        .Flatten(flattened, keyLookup, sb, separator);
                 }
 
                 sb.Length = baseLen;
@@ -173,7 +175,7 @@ public static partial class JsonExtensions
                 {
                     sb.Length = keyStart;
                     sb.Append(pair.Key);
-                    Flatten(pair.Value, flattened, keyLookup, sb, separator);
+                    pair.Value.Flatten(flattened, keyLookup, sb, separator);
                 }
 
                 sb.Length = baseLen;
