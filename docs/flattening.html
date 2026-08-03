@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Flattening &amp; unflattening with JsonExtensions | Invex.Extensions.Json </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Flattening &amp; unflattening with JsonExtensions | Invex.Extensions.Json ">
+      
+      
+      <link rel="icon" href="../favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/Invex-Games/json-extensions/blob/main/docs/flattening.md/#L1">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../logo.svg" alt="Invex.Extensions.Json">
+            Invex.Extensions.Json
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="flattening--unflattening-with-jsonextensions">Flattening &amp; unflattening with <code>JsonExtensions</code></h1>
+
+<p><code>JsonExtensions.Flatten</code> and <code>JsonExtensions.Unflatten</code> convert between hierarchical JSON and a
+flat <code>IDictionary&lt;string, string?&gt;</code> using <strong>bracketed array indices</strong> (<code>users:[0]:name</code>). All
+values are represented as strings, which makes these methods a natural fit for configuration
+providers, environment variables, and other key/value stores.</p>
+<h2 id="flatten">Flatten</h2>
+<pre><code class="lang-csharp">public static IDictionary&lt;string, string?&gt; Flatten(JsonNode node, string separator = &quot;:&quot;)
+</code></pre>
+<p>Walks the tree depth-first and emits one entry per <strong>leaf value</strong>:</p>
+<pre><code class="lang-csharp">var json = JsonNode.Parse(&quot;&quot;&quot;
+{
+  &quot;user&quot;: {
+    &quot;name&quot;: &quot;John&quot;,
+    &quot;addresses&quot;: [ { &quot;city&quot;: &quot;New York&quot;, &quot;zip&quot;: &quot;10001&quot; } ],
+    &quot;tags&quot;: [&quot;admin&quot;, &quot;user&quot;],
+    &quot;manager&quot;: null
+  }
+}
+&quot;&quot;&quot;)!;
+
+var flat = JsonExtensions.Flatten(json);
+// [&quot;user:name&quot;]               = &quot;John&quot;
+// [&quot;user:addresses:[0]:city&quot;] = &quot;New York&quot;
+// [&quot;user:addresses:[0]:zip&quot;]  = &quot;10001&quot;
+// [&quot;user:tags:[0]&quot;]           = &quot;admin&quot;
+// [&quot;user:tags:[1]&quot;]           = &quot;user&quot;
+// [&quot;user:manager&quot;]            = null
+</code></pre>
+<h3 id="behavior-notes">Behavior notes</h3>
+<ul>
+<li><strong>Input</strong> — accepts any <code>JsonNode</code> (<code>JsonObject</code>, <code>JsonArray</code>, or a primitive). The source
+node is never modified.</li>
+<li><strong>Values become strings</strong> — numbers and booleans are stored via <code>ToString()</code>; JSON nulls
+become <code>null</code> dictionary entries. The original value kinds are <em>not</em> preserved.</li>
+<li><strong>Empty containers</strong> — <code>{}</code> and <code>[]</code> produce no entries.</li>
+<li><strong>Primitive root</strong> — produces a single entry with an empty-string key.</li>
+<li><strong>Performance</strong> — implemented with a single reusable <code>StringBuilder</code>; no regex, no
+per-segment string allocations.</li>
+<li><strong>Throws</strong> — <code>ArgumentNullException</code> when <code>node</code> is null.</li>
+</ul>
+<h2 id="unflatten">Unflatten</h2>
+<pre><code class="lang-csharp">public static JsonObject Unflatten(IDictionary&lt;string, string?&gt; flattened, string separator = &quot;:&quot;)
+</code></pre>
+<p>Reverses <code>Flatten</code>, recreating nested objects and arrays from the path notation:</p>
+<pre><code class="lang-csharp">var flattened = new Dictionary&lt;string, string?&gt;
+{
+    [&quot;user:name&quot;]               = &quot;John&quot;,
+    [&quot;user:addresses:[0]:city&quot;] = &quot;New York&quot;,
+    [&quot;user:addresses:[0]:zip&quot;]  = &quot;10001&quot;,
+    [&quot;user:tags:[0]&quot;]           = &quot;admin&quot;,
+    [&quot;user:tags:[1]&quot;]           = &quot;user&quot;,
+};
+
+JsonObject json = JsonExtensions.Unflatten(flattened);
+// {&quot;user&quot;:{&quot;name&quot;:&quot;John&quot;,&quot;addresses&quot;:[{&quot;city&quot;:&quot;New York&quot;,&quot;zip&quot;:&quot;10001&quot;}],&quot;tags&quot;:[&quot;admin&quot;,&quot;user&quot;]}}
+</code></pre>
+<h3 id="behavior-notes-1">Behavior notes</h3>
+<ul>
+<li><strong>Bracketed segments</strong> (<code>[0]</code>, <code>[1]</code>, …) indicate array positions; everything else is an
+object property name. Mixed paths like <code>users:[0]:name</code> are fully supported.</li>
+<li><strong>Append-order indices</strong> — array elements are added in the order encountered; sparse or
+non-sequential indices are <em>not</em> padded with nulls. (Contrast with
+<a href="jsonobject-extensions.html#tounflattenedjsonobject"><code>ToUnflattenedJsonObject</code></a>, which pads.)</li>
+<li><strong>All leaves are strings</strong> — because the input values are strings, the rebuilt tree contains
+JSON strings (or JSON nulls) at every leaf. Numbers and booleans are not restored.</li>
+<li><strong>Duplicate paths</strong> — the last value wins.</li>
+<li><strong>Throws</strong> — <code>ArgumentNullException</code> when <code>flattened</code> is null.</li>
+</ul>
+<h2 id="round-tripping">Round-tripping</h2>
+<p><code>Flatten</code> → <code>Unflatten</code> preserves <em>structure</em> but normalizes all leaf values to strings:</p>
+<pre><code class="lang-csharp">var original = JsonNode.Parse(&quot;&quot;&quot;{ &quot;n&quot;: 42, &quot;b&quot;: true }&quot;&quot;&quot;)!;
+var roundTripped = JsonExtensions.Unflatten(JsonExtensions.Flatten(original));
+// {&quot;n&quot;:&quot;42&quot;,&quot;b&quot;:&quot;true&quot;}  ← note: strings now
+</code></pre>
+<p>If you need lossless round-tripping, use the
+<a href="jsonobject-extensions.html"><code>JsonObject</code> extension members</a> instead.</p>
+<h2 id="custom-separators">Custom separators</h2>
+<pre><code class="lang-csharp">var flat = JsonExtensions.Flatten(json, separator: &quot;__&quot;);
+// [&quot;user__tags__[0]&quot;] = &quot;admin&quot;
+
+var rebuilt = JsonExtensions.Unflatten(flat, separator: &quot;__&quot;);
+</code></pre>
+<p>The separator may be multi-character. Use the same separator in both directions, and pick one
+that never occurs in property names.</p>
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/Invex-Games/json-extensions/blob/main/docs/flattening.md/#L1" class="edit-link">Edit this page</a>
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          Useful utilities for Microsoft.Extensions.Json
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
