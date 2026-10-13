@@ -1,8 +1,9 @@
-# `JsonObject` extension members (`JsonUtil`)
+# JsonObject Extension Members
 
 The `JsonUtil` class provides **extension members directly on `JsonObject`** for flattening and
 unflattening with **bare numeric array indices** (`users:0:name`) and — uniquely —
-**full preservation of JSON value kinds** when using `ToFlattenedJsonObject`.
+**full preservation of JSON value kinds** when using `ToFlattenedJsonObject`. Use these members
+when a round trip must keep numbers as numbers and booleans as booleans.
 
 ```csharp
 using System.Text.Json.Nodes;
@@ -120,3 +121,9 @@ var roundTripped = original
 > notation used by `JsonExtensions.Flatten`/`Unflatten`. See
 > [Path notation](path-notation.md) for the full comparison.
 
+## See also
+
+- [Path Notation](path-notation.md) — the two array conventions and value representation
+- [Flattening and Unflattening](flattening.md) — the string-valued `JsonExtensions` API
+- [Replacing Values](replacing-values.md) — updating values with the same bare numeric paths
+- <xref:Invex.Extensions.Json.JsonUtil>
