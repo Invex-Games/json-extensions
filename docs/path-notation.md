@@ -1,9 +1,9 @@
-# Path notation
+# Path Notation
 
 All APIs in this library address locations inside a JSON tree with a **path string**: a list of
 segments joined by a configurable separator (default `":"`). Object properties are always
 addressed by name; the difference between the two API surfaces is **how array elements are
-addressed**.
+addressed**. Read this page before mixing operations or choosing a custom separator.
 
 ## The two conventions at a glance
 
@@ -84,3 +84,11 @@ respect to JSON value kinds. The string-based APIs rebuild every leaf as a JSON 
 - **Duplicate paths** — when the same path occurs more than once in the input to an unflatten
   operation, the last value wins.
 
+## See also
+
+- [Introduction](introduction.md) — choosing between the two API surfaces
+- [Flattening and Unflattening](flattening.md) — the bracketed-index API
+- [JsonObject Extension Members](jsonobject-extensions.md) — the bare numeric, type-preserving API
+- [Replacing Values](replacing-values.md) — bare numeric paths for in-place updates
+- <xref:Invex.Extensions.Json.JsonExtensions>
+- <xref:Invex.Extensions.Json.JsonUtil>
