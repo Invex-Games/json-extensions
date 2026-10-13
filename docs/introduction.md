@@ -66,8 +66,10 @@ change values in a document you already have.
   learn.
 - **Sources are not modified.** Flattening and unflattening always return new objects; the
   `JsonObject` members deep-clone leaf nodes so results share no mutable nodes with their input.
-- **Replacement is conservative.** `ReplaceValue` and `ReplaceValues` mutate in place but never
-  create intermediate objects or arrays, so a mistyped path cannot silently grow the document.
+- **Replacement does not build structure.** `ReplaceValue` and `ReplaceValues` mutate in place but
+  never create intermediate objects or arrays. A path that cannot be fully traversed still falls back
+  to writing a property on the deepest object reached, so a mistyped path can add a property; see the
+  fallback rules in [Replacing values](replacing-values.md).
 - **Allocation-conscious.** `JsonExtensions.Flatten` builds every path in one reusable
   `StringBuilder`, and no operation uses reflection or regular expressions.
 
