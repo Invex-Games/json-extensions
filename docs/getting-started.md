@@ -1,8 +1,8 @@
-# Getting started
+# Getting Started
 
-`Invex.Extensions.Json` provides utilities for **flattening, unflattening, and updating**
-`System.Text.Json` node trees (`JsonNode`, `JsonObject`, `JsonArray`) using human-readable path
-notation such as `user:address:city`.
+This page takes you from installing the package to flattening, rebuilding, and updating your first
+`System.Text.Json` node tree. Read [Introduction](introduction.md) first if you are still deciding
+which API surface fits your problem.
 
 ## Installation
 
@@ -25,7 +25,8 @@ using Invex.Extensions.Json;    // JsonExtensions, JsonUtil
 ## The two API surfaces
 
 The library exposes two complementary APIs. They solve the same problems with slightly
-different trade-offs — see [Path notation](path-notation.md) for the full comparison.
+different trade-offs — see [Introduction](introduction.md#two-api-surfaces) for when to use each
+and [Path Notation](path-notation.md) for the full comparison.
 
 ### 1. `JsonExtensions` — string-valued, bracketed array indices
 
@@ -102,7 +103,7 @@ obj.ReplaceValues(new Dictionary<string, string?>
 });
 ```
 
-See [Replacing values](replacing-values.md) for the full semantics, including fallback
+See [Replacing Values](replacing-values.md) for the full semantics, including fallback
 behavior when a path doesn't exist.
 
 ## Custom separators
@@ -124,8 +125,9 @@ var rebuilt = JsonExtensions.Unflatten(flat, separator: "__");
 
 ## Next steps
 
-- [Path notation](path-notation.md) — how paths are formed and parsed
-- [Flattening & unflattening](flattening.md) — `JsonExtensions` in depth
-- [JsonObject extension members](jsonobject-extensions.md) — the type-preserving API
-- [Replacing values](replacing-values.md) — update semantics and fallbacks
+- [Path Notation](path-notation.md) — how paths are formed and parsed
+- [Flattening and Unflattening](flattening.md) — `JsonExtensions` in depth
+- [JsonObject Extension Members](jsonobject-extensions.md) — the type-preserving API
+- [Replacing Values](replacing-values.md) — update semantics and fallbacks
+- <xref:Invex.Extensions.Json.JsonExtensions> and <xref:Invex.Extensions.Json.JsonUtil> in the API reference
 
