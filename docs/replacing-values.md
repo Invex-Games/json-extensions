@@ -1,4 +1,4 @@
-# Replacing values
+# Replacing Values
 
 `ReplaceValue` (single path) and `ReplaceValues` (batch) update values inside an existing
 `JsonObject` **in place**, returning the same instance for chaining. Both are deliberately
@@ -131,3 +131,9 @@ var result = obj
 | Missing root property (simple path) | Not added | Not added |
 | Mutates in place | Yes | Yes |
 
+## See also
+
+- [Path Notation](path-notation.md) — why `ReplaceValues` uses bare numeric indices
+- [Flattening and Unflattening](flattening.md) — producing flat key/value pairs
+- [JsonObject Extension Members](jsonobject-extensions.md) — flattened keys with bare numeric indices
+- <xref:Invex.Extensions.Json.JsonExtensions>
