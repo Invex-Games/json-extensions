@@ -1,11 +1,12 @@
-- name: Getting started
+- name: Introduction
+  href: introduction.md
+- name: Getting Started
   href: getting-started.md
-- name: Path notation
+- name: Path Notation
   href: path-notation.md
-- name: Flattening & unflattening
+- name: Flattening and Unflattening
   href: flattening.md
-- name: JsonObject extension members
+- name: JsonObject Extension Members
   href: jsonobject-extensions.md
-- name: Replacing values
+- name: Replacing Values
   href: replacing-values.md
-
