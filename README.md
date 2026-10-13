@@ -18,7 +18,7 @@ JSON diffing or patching, and exchanging JSON with flat key/value stores.
 - Preserve JSON value types when flattening to a `JsonObject`.
 - Use configurable separators, including multi-character separators.
 - Avoid reflection and regular expressions on the hot paths.
-- Target `net10.0`, `net9.0`, `net8.0`, and `netstandard2.0`.
+- Target `net10.0` and `netstandard2.0`.
 
 ## Installation
 
