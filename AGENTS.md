@@ -33,8 +33,8 @@ docfx docfx.json
 docfx docfx.json --serve
 ```
 
-The library targets `net10.0`, `net9.0`, `net8.0`, and `netstandard2.0`.
-The test project targets `net10.0`, `net9.0`, `net8.0`, and `net48`.
+The library targets `net10.0` and `netstandard2.0`.
+The test project targets `net10.0` and `net48`.
 Validate changes against all relevant targets, not only the current runtime.
 
 After code changes, run ReSharper cleanup over the solution's C# files:
