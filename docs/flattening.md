@@ -1,9 +1,10 @@
-# Flattening & unflattening with `JsonExtensions`
+# Flattening and Unflattening
 
 `JsonExtensions.Flatten` and `JsonExtensions.Unflatten` convert between hierarchical JSON and a
 flat `IDictionary<string, string?>` using **bracketed array indices** (`users:[0]:name`). All
 values are represented as strings, which makes these methods a natural fit for configuration
-providers, environment variables, and other key/value stores.
+providers, environment variables, and other key/value stores. Use this page when the destination
+of your JSON only stores strings.
 
 ## Flatten
 
@@ -105,3 +106,9 @@ var rebuilt = JsonExtensions.Unflatten(flat, separator: "__");
 The separator may be multi-character. Use the same separator in both directions, and pick one
 that never occurs in property names.
 
+## See also
+
+- [Path Notation](path-notation.md) — bracketed versus bare numeric indices, separators, and edge cases
+- [JsonObject Extension Members](jsonobject-extensions.md) — the type-preserving alternative
+- [Replacing Values](replacing-values.md) — updating an existing object in place
+- <xref:Invex.Extensions.Json.JsonExtensions>
