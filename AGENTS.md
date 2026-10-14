@@ -29,9 +29,14 @@ rolling forward to later major SDKs). Run commands from the repository root:
 ```shell
 dotnet build Invex.Extensions.Json.slnx
 dotnet test Invex.Extensions.Json.slnx
+dotnet build Invex.Extensions.Json.slnx --configuration Release
 docfx docfx.json
 docfx docfx.json --serve
 ```
+
+DocFX reads the compiled `bin/Release/net10.0` assembly and its XML documentation file, because
+source extraction omits members declared in C# 14 extension blocks. Build in Release before
+regenerating docs; `atom BuildDocs` does this for you.
 
 The library targets `net10.0` and `netstandard2.0`.
 The test project targets `net10.0` and `net48`.

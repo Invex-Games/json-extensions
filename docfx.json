@@ -5,7 +5,7 @@
       "src": [
         {
           "files": [
-            "src/**/*.csproj"
+            "src/Invex.Extensions.Json/bin/Release/net10.0/Invex.Extensions.Json.dll"
           ]
         }
       ],
