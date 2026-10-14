@@ -66,7 +66,8 @@ needed.
 - The `netstandard2.0` target uses `Polyfill` and a `System.Text.Json` package.
   Guard newer BCL APIs with the existing `#if NET8_0_OR_GREATER` pattern.
 - Every new public type and member needs `[PublicAPI]`, where the public API
-  analyzer applies, and complete XML documentation by convention.
+  analyzer applies, and complete XML documentation; `CS1591` is enforced for
+  the library (only the test and `_atom` projects suppress it).
 - Keep public API minimal. Internal cross-member helpers should remain
   `internal` or `private` unless there is a deliberate API change.
 - Prefer allocation-conscious traversal and existing helpers. Do not add
@@ -139,6 +140,23 @@ When a Verify test fails, inspect the matching `*.received.txt`:
 Keep verified files LF-only. Changes to
 `PublicApiTests.VerifyPublicApiSurface.verified.txt` must be intentional because
 PR validation checks verified files for breaking API changes.
+
+## Documentation
+
+Docs follow the shared Invex documentation standard used by every Invex library:
+
+- **README.md** is also the NuGet readme. Keep the fixed section order (title, badges, pitch, Features,
+  Installation, Quick start, Usage, Documentation, Development, License) and use absolute links only
+  (`https://github.com/Invex-Games/json-extensions/blob/main/...` or the docs site), so they work on nuget.org.
+- **DocFX site** (`docfx.json`, `toc.yml`, `index.md`, `docs/`, `api/index.md`), published to
+  https://invex-games.github.io/json-extensions/. `docs/introduction.md` and `docs/getting-started.md` come first; every page
+  opens with one to three sentences on what it covers and ends with a "See also" or "Next steps" list. Link API
+  types with `<xref:Namespace.Type>`, not file paths.
+- **`api/index.md`** is the only hand-written file under `api/`; everything else there is generated. Put per-type
+  detail in XML docs, not in hand-written API pages.
+- **XML docs are enforced.** `CS1591` is not suppressed for shipped projects, so every public type and member needs
+  `<summary>`, plus `<param>`, `<typeparam>`, `<returns>` and `<exception>` where they apply, `<remarks>` for
+  non-obvious behaviour, and `<see cref>`/`<paramref>`/`<see langword>` for references.
 
 ## Versioning, documentation, and change checklist
 
