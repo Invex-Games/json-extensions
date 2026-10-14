@@ -27,7 +27,7 @@ key/value stores.
 dotnet add package Invex.Extensions.Json
 ```
 
-The package targets `net10.0`, `net9.0`, `net8.0`, and `netstandard2.0`, and
+The package targets `net10.0` and `netstandard2.0`, and
 exposes the `Invex.Extensions.Json` namespace. The `netstandard2.0` target
 includes a `System.Text.Json` package dependency.
 

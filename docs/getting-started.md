@@ -10,7 +10,7 @@ which API surface fits your problem.
 dotnet add package Invex.Extensions.Json
 ```
 
-Supported target frameworks: `net10.0`, `net9.0`, `net8.0`, and `netstandard2.0`
+Supported target frameworks: `net10.0` and `netstandard2.0`
 (the .NET Standard build references `System.Text.Json` as a package).
 
 ## Namespaces
