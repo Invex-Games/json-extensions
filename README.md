@@ -3,7 +3,7 @@
 [![Build](https://github.com/Invex-Games/json-extensions/actions/workflows/Build.yml/badge.svg)](https://github.com/Invex-Games/json-extensions/actions/workflows/Build.yml)
 [![NuGet](https://img.shields.io/nuget/v/Invex.Extensions.Json.svg)](https://www.nuget.org/packages/Invex.Extensions.Json)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://github.com/Invex-Games/json-extensions/blob/main/LICENSE.txt)
-[![.NET](https://img.shields.io/badge/.NET-8.0%20%7C%209.0%20%7C%2010.0%20%7C%20Standard%202.0-512BD4.svg)](https://dotnet.microsoft.com/)
+[![.NET](https://img.shields.io/badge/.NET-10.0%20%7C%20Standard%202.0-512BD4.svg)](https://dotnet.microsoft.com/)
 
 `Invex.Extensions.Json` is a small, allocation-conscious library for flattening,
 unflattening, and updating `System.Text.Json` node trees
