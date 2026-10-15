@@ -23,7 +23,7 @@ namespace:
 
 ## Build, test, and documentation commands
 
-The repository requires the .NET SDK selected by `global.json` (`10.0.403`,
+The repository requires the .NET SDK selected by `global.json` (`11.0.100`,
 rolling forward to later major SDKs). Run commands from the repository root:
 
 ```shell
