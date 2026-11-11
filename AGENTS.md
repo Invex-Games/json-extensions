@@ -24,7 +24,7 @@ namespace:
 ## Build, test, and documentation commands
 
 The repository requires the .NET SDK selected by `global.json` (`11.0.100`,
-rolling forward to later 11.x SDKs). Run commands from the repository root:
+rolling forward to later 11.x SDKs), plus the .NET 10 runtime (or SDK) for the `net10.0` tests and build project. Run commands from the repository root:
 
 ```shell
 dotnet build Invex.Extensions.Json.slnx
