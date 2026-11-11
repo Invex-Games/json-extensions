@@ -1,0 +1,138 @@
+### YamlMime:XRefMap
+sorted: true
+references:
+- uid: Invex.Extensions.Json
+  name: Invex.Extensions.Json
+  href: api/Invex.Extensions.Json.html
+  commentId: N:Invex.Extensions.Json
+  fullName: Invex.Extensions.Json
+  nameWithType: Invex.Extensions.Json
+- uid: Invex.Extensions.Json.JsonExtensions
+  name: JsonExtensions
+  href: api/Invex.Extensions.Json.JsonExtensions.html
+  commentId: T:Invex.Extensions.Json.JsonExtensions
+  fullName: Invex.Extensions.Json.JsonExtensions
+  nameWithType: JsonExtensions
+- uid: Invex.Extensions.Json.JsonExtensions.Flatten(System.Text.Json.Nodes.JsonNode,System.String)
+  name: Flatten(JsonNode, string)
+  href: api/Invex.Extensions.Json.JsonExtensions.html#Invex_Extensions_Json_JsonExtensions_Flatten_System_Text_Json_Nodes_JsonNode_System_String_
+  commentId: M:Invex.Extensions.Json.JsonExtensions.Flatten(System.Text.Json.Nodes.JsonNode,System.String)
+  name.vb: Flatten(JsonNode, String)
+  fullName: Invex.Extensions.Json.JsonExtensions.Flatten(System.Text.Json.Nodes.JsonNode, string)
+  fullName.vb: Invex.Extensions.Json.JsonExtensions.Flatten(System.Text.Json.Nodes.JsonNode, String)
+  nameWithType: JsonExtensions.Flatten(JsonNode, string)
+  nameWithType.vb: JsonExtensions.Flatten(JsonNode, String)
+- uid: Invex.Extensions.Json.JsonExtensions.Flatten*
+  name: Flatten
+  href: api/Invex.Extensions.Json.JsonExtensions.html#Invex_Extensions_Json_JsonExtensions_Flatten_
+  commentId: Overload:Invex.Extensions.Json.JsonExtensions.Flatten
+  fullName: Invex.Extensions.Json.JsonExtensions.Flatten
+  nameWithType: JsonExtensions.Flatten
+- uid: Invex.Extensions.Json.JsonExtensions.ReplaceValue(System.Text.Json.Nodes.JsonObject,System.String,System.String,System.String)
+  name: ReplaceValue(JsonObject, string, string?, string)
+  href: api/Invex.Extensions.Json.JsonExtensions.html#Invex_Extensions_Json_JsonExtensions_ReplaceValue_System_Text_Json_Nodes_JsonObject_System_String_System_String_System_String_
+  commentId: M:Invex.Extensions.Json.JsonExtensions.ReplaceValue(System.Text.Json.Nodes.JsonObject,System.String,System.String,System.String)
+  name.vb: ReplaceValue(JsonObject, String, String, String)
+  fullName: Invex.Extensions.Json.JsonExtensions.ReplaceValue(System.Text.Json.Nodes.JsonObject, string, string?, string)
+  fullName.vb: Invex.Extensions.Json.JsonExtensions.ReplaceValue(System.Text.Json.Nodes.JsonObject, String, String, String)
+  nameWithType: JsonExtensions.ReplaceValue(JsonObject, string, string?, string)
+  nameWithType.vb: JsonExtensions.ReplaceValue(JsonObject, String, String, String)
+- uid: Invex.Extensions.Json.JsonExtensions.ReplaceValue*
+  name: ReplaceValue
+  href: api/Invex.Extensions.Json.JsonExtensions.html#Invex_Extensions_Json_JsonExtensions_ReplaceValue_
+  commentId: Overload:Invex.Extensions.Json.JsonExtensions.ReplaceValue
+  fullName: Invex.Extensions.Json.JsonExtensions.ReplaceValue
+  nameWithType: JsonExtensions.ReplaceValue
+- uid: Invex.Extensions.Json.JsonExtensions.ReplaceValues(System.Text.Json.Nodes.JsonObject,System.Collections.Generic.Dictionary{System.String,System.String},System.String)
+  name: ReplaceValues(JsonObject, Dictionary<string, string?>, string)
+  href: api/Invex.Extensions.Json.JsonExtensions.html#Invex_Extensions_Json_JsonExtensions_ReplaceValues_System_Text_Json_Nodes_JsonObject_System_Collections_Generic_Dictionary_System_String_System_String__System_String_
+  commentId: M:Invex.Extensions.Json.JsonExtensions.ReplaceValues(System.Text.Json.Nodes.JsonObject,System.Collections.Generic.Dictionary{System.String,System.String},System.String)
+  name.vb: ReplaceValues(JsonObject, Dictionary(Of String, String), String)
+  fullName: Invex.Extensions.Json.JsonExtensions.ReplaceValues(System.Text.Json.Nodes.JsonObject, System.Collections.Generic.Dictionary<string, string?>, string)
+  fullName.vb: Invex.Extensions.Json.JsonExtensions.ReplaceValues(System.Text.Json.Nodes.JsonObject, System.Collections.Generic.Dictionary(Of String, String), String)
+  nameWithType: JsonExtensions.ReplaceValues(JsonObject, Dictionary<string, string?>, string)
+  nameWithType.vb: JsonExtensions.ReplaceValues(JsonObject, Dictionary(Of String, String), String)
+- uid: Invex.Extensions.Json.JsonExtensions.ReplaceValues*
+  name: ReplaceValues
+  href: api/Invex.Extensions.Json.JsonExtensions.html#Invex_Extensions_Json_JsonExtensions_ReplaceValues_
+  commentId: Overload:Invex.Extensions.Json.JsonExtensions.ReplaceValues
+  fullName: Invex.Extensions.Json.JsonExtensions.ReplaceValues
+  nameWithType: JsonExtensions.ReplaceValues
+- uid: Invex.Extensions.Json.JsonExtensions.Unflatten(System.Collections.Generic.IDictionary{System.String,System.String},System.String)
+  name: Unflatten(IDictionary<string, string?>, string)
+  href: api/Invex.Extensions.Json.JsonExtensions.html#Invex_Extensions_Json_JsonExtensions_Unflatten_System_Collections_Generic_IDictionary_System_String_System_String__System_String_
+  commentId: M:Invex.Extensions.Json.JsonExtensions.Unflatten(System.Collections.Generic.IDictionary{System.String,System.String},System.String)
+  name.vb: Unflatten(IDictionary(Of String, String), String)
+  fullName: Invex.Extensions.Json.JsonExtensions.Unflatten(System.Collections.Generic.IDictionary<string, string?>, string)
+  fullName.vb: Invex.Extensions.Json.JsonExtensions.Unflatten(System.Collections.Generic.IDictionary(Of String, String), String)
+  nameWithType: JsonExtensions.Unflatten(IDictionary<string, string?>, string)
+  nameWithType.vb: JsonExtensions.Unflatten(IDictionary(Of String, String), String)
+- uid: Invex.Extensions.Json.JsonExtensions.Unflatten*
+  name: Unflatten
+  href: api/Invex.Extensions.Json.JsonExtensions.html#Invex_Extensions_Json_JsonExtensions_Unflatten_
+  commentId: Overload:Invex.Extensions.Json.JsonExtensions.Unflatten
+  fullName: Invex.Extensions.Json.JsonExtensions.Unflatten
+  nameWithType: JsonExtensions.Unflatten
+- uid: Invex.Extensions.Json.JsonUtil
+  name: JsonUtil
+  href: api/Invex.Extensions.Json.JsonUtil.html
+  commentId: T:Invex.Extensions.Json.JsonUtil
+  fullName: Invex.Extensions.Json.JsonUtil
+  nameWithType: JsonUtil
+- uid: Invex.Extensions.Json.JsonUtil.HasNestedObjects(System.Text.Json.Nodes.JsonObject)
+  name: HasNestedObjects(JsonObject)
+  href: api/Invex.Extensions.Json.JsonUtil.html#Invex_Extensions_Json_JsonUtil_HasNestedObjects_System_Text_Json_Nodes_JsonObject_
+  commentId: M:Invex.Extensions.Json.JsonUtil.HasNestedObjects(System.Text.Json.Nodes.JsonObject)
+  fullName: Invex.Extensions.Json.JsonUtil.HasNestedObjects(System.Text.Json.Nodes.JsonObject)
+  nameWithType: JsonUtil.HasNestedObjects(JsonObject)
+- uid: Invex.Extensions.Json.JsonUtil.HasNestedObjects*
+  name: HasNestedObjects
+  href: api/Invex.Extensions.Json.JsonUtil.html#Invex_Extensions_Json_JsonUtil_HasNestedObjects_
+  commentId: Overload:Invex.Extensions.Json.JsonUtil.HasNestedObjects
+  fullName: Invex.Extensions.Json.JsonUtil.HasNestedObjects
+  nameWithType: JsonUtil.HasNestedObjects
+- uid: Invex.Extensions.Json.JsonUtil.ToFlattenedDictionary(System.Text.Json.Nodes.JsonObject,System.String)
+  name: ToFlattenedDictionary(JsonObject, string)
+  href: api/Invex.Extensions.Json.JsonUtil.html#Invex_Extensions_Json_JsonUtil_ToFlattenedDictionary_System_Text_Json_Nodes_JsonObject_System_String_
+  commentId: M:Invex.Extensions.Json.JsonUtil.ToFlattenedDictionary(System.Text.Json.Nodes.JsonObject,System.String)
+  name.vb: ToFlattenedDictionary(JsonObject, String)
+  fullName: Invex.Extensions.Json.JsonUtil.ToFlattenedDictionary(System.Text.Json.Nodes.JsonObject, string)
+  fullName.vb: Invex.Extensions.Json.JsonUtil.ToFlattenedDictionary(System.Text.Json.Nodes.JsonObject, String)
+  nameWithType: JsonUtil.ToFlattenedDictionary(JsonObject, string)
+  nameWithType.vb: JsonUtil.ToFlattenedDictionary(JsonObject, String)
+- uid: Invex.Extensions.Json.JsonUtil.ToFlattenedDictionary*
+  name: ToFlattenedDictionary
+  href: api/Invex.Extensions.Json.JsonUtil.html#Invex_Extensions_Json_JsonUtil_ToFlattenedDictionary_
+  commentId: Overload:Invex.Extensions.Json.JsonUtil.ToFlattenedDictionary
+  fullName: Invex.Extensions.Json.JsonUtil.ToFlattenedDictionary
+  nameWithType: JsonUtil.ToFlattenedDictionary
+- uid: Invex.Extensions.Json.JsonUtil.ToFlattenedJsonObject(System.Text.Json.Nodes.JsonObject,System.String)
+  name: ToFlattenedJsonObject(JsonObject, string)
+  href: api/Invex.Extensions.Json.JsonUtil.html#Invex_Extensions_Json_JsonUtil_ToFlattenedJsonObject_System_Text_Json_Nodes_JsonObject_System_String_
+  commentId: M:Invex.Extensions.Json.JsonUtil.ToFlattenedJsonObject(System.Text.Json.Nodes.JsonObject,System.String)
+  name.vb: ToFlattenedJsonObject(JsonObject, String)
+  fullName: Invex.Extensions.Json.JsonUtil.ToFlattenedJsonObject(System.Text.Json.Nodes.JsonObject, string)
+  fullName.vb: Invex.Extensions.Json.JsonUtil.ToFlattenedJsonObject(System.Text.Json.Nodes.JsonObject, String)
+  nameWithType: JsonUtil.ToFlattenedJsonObject(JsonObject, string)
+  nameWithType.vb: JsonUtil.ToFlattenedJsonObject(JsonObject, String)
+- uid: Invex.Extensions.Json.JsonUtil.ToFlattenedJsonObject*
+  name: ToFlattenedJsonObject
+  href: api/Invex.Extensions.Json.JsonUtil.html#Invex_Extensions_Json_JsonUtil_ToFlattenedJsonObject_
+  commentId: Overload:Invex.Extensions.Json.JsonUtil.ToFlattenedJsonObject
+  fullName: Invex.Extensions.Json.JsonUtil.ToFlattenedJsonObject
+  nameWithType: JsonUtil.ToFlattenedJsonObject
+- uid: Invex.Extensions.Json.JsonUtil.ToUnflattenedJsonObject(System.Text.Json.Nodes.JsonObject,System.String)
+  name: ToUnflattenedJsonObject(JsonObject, string)
+  href: api/Invex.Extensions.Json.JsonUtil.html#Invex_Extensions_Json_JsonUtil_ToUnflattenedJsonObject_System_Text_Json_Nodes_JsonObject_System_String_
+  commentId: M:Invex.Extensions.Json.JsonUtil.ToUnflattenedJsonObject(System.Text.Json.Nodes.JsonObject,System.String)
+  name.vb: ToUnflattenedJsonObject(JsonObject, String)
+  fullName: Invex.Extensions.Json.JsonUtil.ToUnflattenedJsonObject(System.Text.Json.Nodes.JsonObject, string)
+  fullName.vb: Invex.Extensions.Json.JsonUtil.ToUnflattenedJsonObject(System.Text.Json.Nodes.JsonObject, String)
+  nameWithType: JsonUtil.ToUnflattenedJsonObject(JsonObject, string)
+  nameWithType.vb: JsonUtil.ToUnflattenedJsonObject(JsonObject, String)
+- uid: Invex.Extensions.Json.JsonUtil.ToUnflattenedJsonObject*
+  name: ToUnflattenedJsonObject
+  href: api/Invex.Extensions.Json.JsonUtil.html#Invex_Extensions_Json_JsonUtil_ToUnflattenedJsonObject_
+  commentId: Overload:Invex.Extensions.Json.JsonUtil.ToUnflattenedJsonObject
+  fullName: Invex.Extensions.Json.JsonUtil.ToUnflattenedJsonObject
+  nameWithType: JsonUtil.ToUnflattenedJsonObject

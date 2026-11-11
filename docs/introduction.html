@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Introduction | Invex.Extensions.Json </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Introduction | Invex.Extensions.Json ">
+      
+      
+      <link rel="icon" href="../favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/Invex-Games/json-extensions/blob/main/docs/introduction.md/#L1">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+
+      <script type="module" src="./../public/docfx.min.js"></script>
+
+      <script>
+        const theme = localStorage.getItem('theme') || 'auto'
+        document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+      </script>
+
+  </head>
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../images/icon.png" alt="Invex.Extensions.Json">
+            Invex.Extensions.Json
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="introduction">Introduction</h1>
+
+<p><code>Invex.Extensions.Json</code> adds path-based operations to the <code>System.Text.Json</code> DOM
+(<code>JsonNode</code>, <code>JsonObject</code>, <code>JsonArray</code>): flatten a tree into <code>path → value</code> pairs, rebuild a tree
+from those pairs, and update values in an existing object by path. Read this page to decide whether
+the library fits your problem and which of its two API surfaces to use.</p>
+<h2 id="when-to-use-it">When to use it</h2>
+<ul>
+<li><strong>Flat key/value stores.</strong> Configuration providers, environment variables, and
+<code>.properties</code>-style files that only understand <code>key = value</code> strings.</li>
+<li><strong>ETL and data exchange.</strong> Moving JSON documents through systems that store columns or
+key/value pairs rather than trees.</li>
+<li><strong>Diffing and patching.</strong> Comparing two documents path by path, or applying a set of
+<code>path → value</code> overrides to a template document.</li>
+<li><strong>Inspecting structure.</strong> Checking whether an object is already flat before deciding how to
+process it.</li>
+</ul>
+<h2 id="when-not-to-use-it">When not to use it</h2>
+<ul>
+<li><strong>Object serialization.</strong> To map JSON to and from .NET types, use <code>JsonSerializer</code>; this
+library works on the node DOM only.</li>
+<li><strong>Query languages.</strong> It does not implement JSONPath, JSON Pointer, or JSON Patch. Paths are
+plain separator-joined segments with no wildcards, filters, or escaping.</li>
+<li><strong>Property names that contain the separator.</strong> Names are not escaped, so a separator inside a
+name becomes a path boundary when unflattening. Choose a different separator, or a different
+tool.</li>
+<li><strong>Empty containers that must survive.</strong> Empty objects and arrays produce no flattened entries,
+so they are lost on every round trip.</li>
+</ul>
+<h2 id="key-concepts-at-a-glance">Key concepts at a glance</h2>
+<table>
+<thead>
+<tr>
+<th>Concept</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Path</td>
+<td>Segments joined by a separator, e.g. <code>user:address:city</code>.</td>
+</tr>
+<tr>
+<td>Separator</td>
+<td>The string between segments. Defaults to <code>&quot;:&quot;</code>; may be several characters, e.g. <code>&quot;__&quot;</code>.</td>
+</tr>
+<tr>
+<td>Leaf</td>
+<td>A JSON primitive or JSON null. Only leaves produce flattened entries.</td>
+</tr>
+<tr>
+<td>Bracketed index</td>
+<td><code>users:[0]:name</code>, used by <code>JsonExtensions.Flatten</code> and <code>Unflatten</code>.</td>
+</tr>
+<tr>
+<td>Bare numeric index</td>
+<td><code>users:0:name</code>, used by the <code>JsonObject</code> extension members and <code>ReplaceValues</code>.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="two-api-surfaces">Two API surfaces</h3>
+<p>The library has two complementary path and value models. Pair operations from the same column
+when round-tripping.</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th><code>JsonExtensions</code></th>
+<th><code>JsonObject</code> extension members (<code>JsonUtil</code>)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Flattening input</td>
+<td>Any <code>JsonNode</code></td>
+<td><code>JsonObject</code></td>
+</tr>
+<tr>
+<td>Array path syntax</td>
+<td>Bracketed: <code>users:[0]:name</code></td>
+<td>Bare numeric: <code>users:0:name</code></td>
+</tr>
+<tr>
+<td>Flattened values</td>
+<td><code>string?</code></td>
+<td>Original JSON nodes, or <code>string?</code> for the dictionary method</td>
+</tr>
+<tr>
+<td>Unflattened arrays</td>
+<td>Append order; no sparse padding</td>
+<td>Numeric indices; sparse indices padded with <code>null</code></td>
+</tr>
+<tr>
+<td>Best suited to</td>
+<td>Configuration and string key/value stores</td>
+<td>Lossless JSON round-tripping</td>
+</tr>
+</tbody>
+</table>
+<p>Pick <code>JsonExtensions</code> when the destination only holds strings anyway. Pick the <code>JsonObject</code>
+extension members (<code>ToFlattenedJsonObject</code> and <code>ToUnflattenedJsonObject</code>) when numbers must stay
+numbers and booleans must stay booleans. In both cases, use <code>ReplaceValue</code> or <code>ReplaceValues</code> to
+change values in a document you already have.</p>
+<div class="WARNING">
+<h5>Warning</h5>
+<p>The two array conventions are not interchangeable. Do not pass bracketed paths from <code>Flatten</code>
+to <code>ReplaceValues</code>, and do not mix <code>JsonExtensions.Unflatten</code> with <code>ToFlattenedJsonObject</code>.</p>
+</div>
+<h2 id="design-principles">Design principles</h2>
+<ul>
+<li><strong>Readable paths over a query language.</strong> One path format, one separator, no escaping rules to
+learn.</li>
+<li><strong>Sources are not modified.</strong> Flattening and unflattening always return new objects; the
+<code>JsonObject</code> members deep-clone leaf nodes so results share no mutable nodes with their input.</li>
+<li><strong>Replacement does not build structure.</strong> <code>ReplaceValue</code> and <code>ReplaceValues</code> mutate in place but
+never create intermediate objects or arrays. A path that cannot be fully traversed still falls back
+to writing a property on the deepest object reached, so a mistyped path can add a property; see the
+fallback rules in <a href="replacing-values.html">Replacing values</a>.</li>
+<li><strong>Allocation-conscious.</strong> <code>JsonExtensions.Flatten</code> builds every path in one reusable
+<code>StringBuilder</code>, and no operation uses reflection or regular expressions.</li>
+</ul>
+<h2 id="see-also">See also</h2>
+<ul>
+<li><a href="getting-started.html">Getting Started</a></li>
+<li><a href="path-notation.html">Path Notation</a></li>
+<li><a href="flattening.html">Flattening and Unflattening</a></li>
+<li><a href="jsonobject-extensions.html">JsonObject Extension Members</a></li>
+<li><a href="replacing-values.html">Replacing Values</a></li>
+<li><a class="xref" href="../api/Invex.Extensions.Json.JsonExtensions.html">JsonExtensions</a></li>
+<li><a class="xref" href="../api/Invex.Extensions.Json.JsonUtil.html">JsonUtil</a></li>
+</ul>
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/Invex-Games/json-extensions/blob/main/docs/introduction.md/#L1" class="edit-link">Edit this page</a>
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          Invex.Extensions.Json · MIT License · Invex Games
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
