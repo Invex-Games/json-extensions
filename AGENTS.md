@@ -23,8 +23,8 @@ namespace:
 
 ## Build, test, and documentation commands
 
-The repository requires the .NET SDK selected by `global.json` (`10.0.403`,
-rolling forward to later major SDKs). Run commands from the repository root:
+The repository requires the .NET SDK selected by `global.json` (`11.0.100`,
+rolling forward to later 11.x SDKs), plus the .NET 10 runtime (or SDK) for the `net10.0` tests and build project. Run commands from the repository root:
 
 ```shell
 dotnet build Invex.Extensions.Json.slnx
@@ -38,8 +38,8 @@ DocFX reads the compiled `bin/Release/net10.0` assembly and its XML documentatio
 source extraction omits members declared in C# 14 extension blocks. Build in Release before
 regenerating docs; `atom BuildDocs` does this for you.
 
-The library targets `net10.0` and `netstandard2.0`.
-The test project targets `net10.0` and `net48`.
+The library targets `net10.0`, `net11.0` and `netstandard2.0`.
+The test project targets `net10.0`, `net11.0` and `net48`.
 Validate changes against all relevant targets, not only the current runtime.
 
 After code changes, run ReSharper cleanup over the solution's C# files:
