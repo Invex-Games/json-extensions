@@ -38,8 +38,8 @@ DocFX reads the compiled `bin/Release/net10.0` assembly and its XML documentatio
 source extraction omits members declared in C# 14 extension blocks. Build in Release before
 regenerating docs; `atom BuildDocs` does this for you.
 
-The library targets `net10.0` and `netstandard2.0`.
-The test project targets `net10.0` and `net48`.
+The library targets `net10.0`, `net11.0` and `netstandard2.0`.
+The test project targets `net10.0`, `net11.0` and `net48`.
 Validate changes against all relevant targets, not only the current runtime.
 
 After code changes, run ReSharper cleanup over the solution's C# files:
